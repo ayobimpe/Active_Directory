@@ -4,8 +4,8 @@ resource "aws_security_group" "awsgss_sg" {
   description = "Allow incoming SSH access"
   vpc_id= var.vpc_id
   ingress {
-    from_port = 22
-    to_port = 22
+    from_port = 3389
+    to_port = 3389
     protocol = "tcp"
     cidr_blocks = ["184.182.197.50/32"]
   }
