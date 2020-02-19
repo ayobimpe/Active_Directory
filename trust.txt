@@ -1,0 +1,17 @@
+https://signin.aws.amazon.com/static/saml-metadata.xml
+
+
+“https://aws.amazon.com/SAML/Attributes/RoleSessionName” 
+
+c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", Issuer == "AD AUTHORITY"]
+ => add(store = "Active Directory", types = ("http://temp/variable"), query = ";tokenGroups;{0}", param = c.Value);
+
+
+
+c:[Type == "http://temp/variable", Value =~ "(?i)^AWS-"]
+ => issue(Type = "https://aws.amazon.com/SAML/Attributes/Role", Value = RegExReplace(c.Value, "AWS-", "arn:aws:iam:: <ACCOUNT NUMBER>:saml-provider/adfs,arn:aws:iam::<ACCOUNT NUMBER>:role/AWS-"));
+
+
+
+c:[Type == "http://temp/variable", Value =~ "(?i)^AWS-"]
+ => issue(Type = "https://aws.amazon.com/SAML/Attributes/Role", Value = RegExReplace(c.Value, "AWS-", "arn:aws:iam:: <ACCOUNT NUMBER>:saml-provider/adfs,arn:aws:iam::<ACCOUNT NUMBER>:role/AWS-"));
