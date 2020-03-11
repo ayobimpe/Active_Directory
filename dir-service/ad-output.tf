@@ -14,3 +14,8 @@ output "aws_gss_vpc_dns_name" {
 output "ad" {
   value = aws_directory_service_directory.aws_gss_ad.name
 }
+
+
+output "ec2-ssm-role-profile"{
+  value = aws_iam_instance_profile.ec2-ssm-role-profile.name
+}

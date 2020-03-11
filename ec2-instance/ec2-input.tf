@@ -3,12 +3,12 @@ variable "instance_type" {
 }
 
 variable "project_name" {
-  default = "torch"
+  default = "torch-aws-gss-domain"
 }
 
 
 variable "key_name" {
-  default = "Practice"
+  default = "ssokeypair"
 }
 
 variable "awsgss_sg" {}
@@ -21,5 +21,5 @@ variable "ec2-ssm-profile" {}
 
 
 variable "ami" {
-  default = "ami-02daaf23b3890d162"
+  default = "ami-94ae88f5"
 }

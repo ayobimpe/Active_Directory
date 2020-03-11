@@ -24,22 +24,21 @@ module "ec2-instance" {
   ec2-ssm-profile    = module.dir-service.ec2-ssm-role-profile
 }
 
-
 module "sec-grp" {
   source      = "../sec-grp"
   vpc_id     = module.network.aws_gss
 }
 
-# module "ssm" {
-#   source       = "../ssm"
-#   awsgss_kms   = module.kms.awsgsskey
-#   ad           = module.dir-service.ad
-#   dnsIpAddresses = jsonencode(module.dir-service.aws_gss_vpc_dns_ip_addresses)
-#   domain_name = var.domain_name
-#   admin_password = var.admin_password
-#   window_instance = module.ec2-instance.domainjoin
-# }
-
 module "kms" {
   source       = "../kms"
+}
+
+
+module "lb" {
+  source     = "../lb"
+  subnet_ids = module.network.public-subnet
+  awsgss_lb_sg = module.sec-grp.awsgss_lb_sg
+  vpc_id       = module.network.aws_gss
+  domain_instance = module.ec2-instance.domainjoin
+  ssl-cert        = var.ssl-cert
 }

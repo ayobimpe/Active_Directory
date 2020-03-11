@@ -1,4 +1,3 @@
-
 variable "enable_dns_support" {
     default = true
     }
@@ -28,4 +27,3 @@ variable "cidr_block" {
 
 
 variable "ec2-instance" {}
-

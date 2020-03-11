@@ -1,5 +1,3 @@
-
-
 data "aws_availability_zones" "az" {
   state = "available"
 }
@@ -65,7 +63,13 @@ resource "aws_eip" "eip" {
   vpc      = true
 }
 
+
 resource "aws_eip_association" "eip_assoc" {
+  instance_id   = var.ec2-instance
+  allocation_id = aws_eip.eip.id
+}
+
+resource "aws_eip_association" "ldap_eip_assoc" {
   instance_id   = var.ec2-instance
   allocation_id = aws_eip.eip.id
 }

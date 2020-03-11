@@ -47,5 +47,3 @@ resource "aws_ssm_association" "ssm_association_instance" {
 	instance_id = var.window_instance
 	depends_on = [aws_ssm_document.ssm_join_domain_doc, var.window_instance]
 }
-
-

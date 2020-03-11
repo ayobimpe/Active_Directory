@@ -36,5 +36,3 @@ resource "aws_iam_role_policy_attachment" "ec2-ssm-role-policy" {
   policy_arn = var.ssm_policy_arn[count.index]
 }
 
-
-
