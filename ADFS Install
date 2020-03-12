@@ -1,0 +1,40 @@
+	• Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+	• Add-WindowsFeature Adcs-Cert-Authority -IncludeManagementTools
+
+	• $cmdOutput = (New-Guid).Guid
+
+	• (New-Guid).Guid
+
+	• New-ADObject -Name "ADFS" -Type Container -Path “OU=gss,DC=gss,DC=com”
+
+	• New-ADObject -Name $cmdOutput -Type Container -Path “CN=ADFS,OU=gss,DC=gss,DC=com”
+
+	• Install-WindowsFeature ADFS-Federation       (-----this needs administrator right)
+
+
+	• $Cred = New-Object System.Management.Automation.PSCredential (“username”, $password)
+
+	• $svcCred = (get-credential)
+
+	• $localAdminCred = (get-credential)
+
+	• $svcCred = New-Object System.Management.Automation.PSCredential (“username”, $password)
+
+	• $localAdminCred  = New-Object System.Management.Automation.PSCredential (“username”, $password)
+
+
+	• $fqdn = "hud.adfs.pyramidlabs.us"
+
+	• $certThumbprint = 
+
+	• $adminConfig = @{"DKMContainerDn"="CN=$cmdOutput,CN=ADFS,OU=awsgss,DC=awsgss,DC=com"}
+
+	• Install-ADFSFarm -CertificateThumbprint $certThumbprint -FederationServiceName $fqdn -ServiceAccountCredential $svcCred -Credential $localAdminCred -OverwriteConfiguration -AdminConfiguration $adminConfig -SigningCertificateThumbprint $certThumbprint -DecryptionCertificateThumbprint $certThumbprint
+
+	• Set-ADFSProperties -EnableIdpInitiatedSignonPage $true
+
+
+	• Paste the below link in your browser to download SAML file
+	https://15.200.132.6/FederationMetadata/2007-06/FederationMetadata.xml
+
+
